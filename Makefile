@@ -5,9 +5,11 @@ PELICANOPTS=
 BASEDIR=$(CURDIR)
 INPUTDIR=$(BASEDIR)/content
 OUTPUTDIR=$(BASEDIR)/output
-PUBLISHDIR=/home/qhuang/workspace/huangqundl.github.io/blog
+PUBLISHDIR=$(BASEDIR)/blog
+GITDIR=/home/qhuang/workspace/huangqundl.github.io/blog
 CONFFILE=$(BASEDIR)/pelicanconf.py
 PUBLISHCONF=$(BASEDIR)/publishconf.py
+GITCONF=$(BASEDIR)/gitconf.py
 
 FTP_HOST=localhost
 FTP_USER=anonymous
@@ -99,7 +101,11 @@ stopserver:
 
 publish:
 	$(PELICAN) $(INPUTDIR) -o $(PUBLISHDIR) -s $(PUBLISHCONF) $(PELICANOPTS)
-	cd $(PUBLISHDIR) && git add . && git commit -m "blog post" && git push
+	rsync -avz --delete $(PUBLISHDIR) huangqundl@huangqundl.com:~/html/blog
+
+git:
+	$(PELICAN) $(INPUTDIR) -o $(GITDIR) -s $(GITCONF) $(PELICANOPTS)
+	cd $(GITDIR) && git add . && git commit -m "blog post" && git push
 
 ssh_upload: publish
 	scp -P $(SSH_PORT) -r $(OUTPUTDIR)/* $(SSH_USER)@$(SSH_HOST):$(SSH_TARGET_DIR)

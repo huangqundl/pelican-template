@@ -45,3 +45,8 @@ TAGS_URL = "tags"
 
 PLUGIN_PATHS = ["plugins"]
 PLUGINS = ["tag_cloud"]
+DISPLAY_CATEGORIES_ON_MENU = False
+QUOTE = "\"Life is tough, so you must work harder.\""
+BANNER = True
+BANNER_ALL_PAGES = True
+BANNER_SUBTITLE = "\"Life is tough, so you must work harder.\""

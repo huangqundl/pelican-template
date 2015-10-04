@@ -56,6 +56,7 @@
     {# Twitter Cards tags #}
     {% include 'includes/twitter_cards.html' %}
 
+    <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/quote.css" />
     <!-- Bootstrap -->
     {% if BOOTSTRAP_THEME %}
         <link rel="stylesheet" href="{{ SITEURL }}/theme/css/bootstrap.{{ BOOTSTRAP_THEME }}.min.css" type="text/css"/>
@@ -105,7 +106,8 @@
             </button>
             <a href="{{ SITEURL }}/" class="navbar-brand">
                 {% if SITELOGO %}<img src="{{ SITEURL }}/{{ SITELOGO }}" width="{{ SITELOGO_SIZE }}"/> {% endif %}
-                {% if not HIDE_SITENAME %}{{ SITENAME }}{% endif %}
+                <!--{% if not HIDE_SITENAME %}{{ SITENAME }}{% endif %}-->
+                Blog
             </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
